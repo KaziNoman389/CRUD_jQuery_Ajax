@@ -129,7 +129,7 @@ $(document).ready(function() {
 
         swalWithBootstrapButtons.fire({
             title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            text: "You want to delete this data!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Yes, delete it!',
@@ -157,7 +157,7 @@ $(document).ready(function() {
 
                 swalWithBootstrapButtons.fire(
                     'Deleted!',
-                    'Your file has been deleted.',
+                    'Your data has been deleted.',
                     'success'
                 )
             } else if (
@@ -166,7 +166,7 @@ $(document).ready(function() {
             ) {
                 swalWithBootstrapButtons.fire(
                     'Cancelled',
-                    'Your imaginary file is safe :)',
+                    'Your data is safe :)',
                     'error'
                 )
             }

@@ -151,7 +151,7 @@
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="view_emp_id" id="view_emp_id">
-                    <div id="viewEmp_ModalData">
+                    <div id="viewEmp_ModalData" style="text-transform: capitalize;">
 
                     </div>
                 </div>
@@ -311,7 +311,7 @@
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="tableBody" id="emp_data">
+                    <tbody class="tableBody text-center" style="text-transform: capitalize;" id="emp_data">
 
                     </tbody>
                 </table>

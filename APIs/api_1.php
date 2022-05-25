@@ -87,7 +87,7 @@ function get_empTable_Modal_View($sql){
         {
             $row_data .= '
                 <p>Full Name: <b> '.$row['name'].' </b> </p> 
-                <p>Email:  <b> '.$row['email'].' </b> </p>
+                <p style="text-transform: none;">Email:  <b> '.$row['email'].' </b> </p>
                 <p>Phone: <b> '.$row['phone'].' </b> </p>
                 <p>Gender: <b> '.$row['gender'].' </b> </p>
                 <p>Date Of Birth: <b> '.$row['birth_date'].' </b> </p>
