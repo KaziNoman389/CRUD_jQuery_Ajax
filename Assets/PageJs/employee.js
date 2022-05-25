@@ -9,7 +9,7 @@ $(document).ready(function() {
         dataType: "json",
         success: function(result) {
             $('#emp_data').html(result);
-            // $('#emp_table').DataTable();
+            $('#emp_table').DataTable();
         }
     });
 
@@ -26,7 +26,7 @@ $(document).ready(function() {
         $.ajax({
             url: "../APIs/api_1.php",
             type: "post",
-            data: { 'request': '1', 'parameter': '2', 'data': 'id =' + v_id },
+            data: { 'request': '1', 'parameter': '2', 'data': 'id = ' + v_id },
             dataType: "json",
             success: function(result) {
                 $("#viewEmp_ModalData").html(result);
@@ -55,6 +55,123 @@ $(document).ready(function() {
             }
         });
         $("#form_data")[0].reset();
+    });
+
+
+    // ==================== UPDATE ======================= //
+    // fetch_modal_edit_data
+    $("#emp_table").on('click', '#edit_id', function(e) {
+        var u_id = $(this).attr('data-id');
+        $("#update_emp_id").val(u_id);
+        $("#updateEmp_Modal").modal("show");
+    });
+
+    //edit_modal_data_view
+    $("#updateEmp_Modal").on('show.bs.modal', function(e) {
+        var u_id = $("#update_emp_id").val();
+        $.ajax({
+            url: "../APIs/api_1.php",
+            type: "post",
+            data: { 'request': '1', 'parameter': '3', 'data': 'id = ' + u_id },
+            dataType: "json",
+            success: function(result) {
+                var record = result[0];
+                $('#edit_name').val(record['name']);
+                $('#edit_email').val(record['email']);
+                $('#edit_phone').val(record['phone']);
+                $('#edit_birth_date').val(record['birth_date']);
+
+                $('[name="edit_gender"]').val([record['gender']]);
+
+                $('[name="edit_marital_status"]').val([record['marital_status']]);
+
+                $('#edit_occupation').val(record['occupation']);
+                $('#edit_nationality').val(record['nationality']);
+                $('#edit_present_address').val(record['present_address']);
+                $('#edit_permanent_address').val(record['permanent_address']);
+            }
+        });
+    });
+
+    //update data to database
+    $('#edit_form_data').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "Post",
+            url: "../Controllers/update_empData.php",
+            data: $('form').serialize(),
+            success: function(result) {
+                $.ajax({
+                    type: "post",
+                    url: "../APIs/api_1.php",
+                    data: { 'request': '1', 'parameter': '1' },
+                    dataType: "json",
+                    success: function(result) {
+                        $('#emp_data').html(result);
+                        $("#updateEmp_Modal").modal("hide");
+                    }
+                });
+            }
+        });
+    });
+
+    //Delete data to database
+    $('#emp_table').on('click', '#delele_id', function(e) {
+        var del_id = $(this).attr('data-id');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-danger',
+                cancelButton: 'btn btn-secondary'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                $.ajax({
+                    type: "Post",
+                    url: "../Controllers/delete_empData.php",
+                    data: { 'del_emp_id': del_id },
+                    success: function(result) {
+                        $.ajax({
+                            type: "post",
+                            url: "../APIs/api_1.php",
+                            data: { 'request': '1', 'parameter': '1' },
+                            dataType: "json",
+                            success: function(result) {
+                                $('#emp_data').html(result);
+                            }
+                        });
+                    }
+                });
+
+                swalWithBootstrapButtons.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Your imaginary file is safe :)',
+                    'error'
+                )
+            }
+        })
+
     });
 
 });
