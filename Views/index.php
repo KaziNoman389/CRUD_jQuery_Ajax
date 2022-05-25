@@ -12,6 +12,7 @@
         href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0eVcqw3IC0Y_FrO5iZCIk64RtqojoMt9--w&usqp=CAU">
 
     <!-- bootstrap css cdn -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
@@ -19,13 +20,17 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 
     <!-- Data table cdn -->
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css'>
-    <link rel='stylesheet' href='https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css'>
-    <link rel='stylesheet' href='https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.bootstrap5.min.css'>
+    <!-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css'> -->
+    <!-- <link rel='stylesheet' href='https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css'> -->
+    <!-- <link rel='stylesheet' href='https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.bootstrap5.min.css'> -->
 
     <style>
     .swal2-cancel.btn.btn-secondary {
         margin-right: 20px !important;
+    }
+
+    #emp_table_wrapper .row .col-md-6:nth-child(2) {
+        text-align: end;
     }
     </style>
 
@@ -294,9 +299,9 @@
 
             <div class="card-body">
 
-                <table class="table table-bordered table-striped" id="emp_table">
+                <table class="table table-bordered table-striped text-center" id="emp_table">
                     <thead>
-                        <tr class="text-center" style="text-transform: capitalize;">
+                        <tr style="text-transform: capitalize; text-align: center;">
                             <th scope="col">serial Numner</th>
                             <th scope="col">Full Name</th>
                             <!-- <th scope="col">Email</th> -->
@@ -311,7 +316,7 @@
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="tableBody text-center" style="text-transform: capitalize;" id="emp_data">
+                    <tbody class="tableBody" style="text-transform: capitalize;" id="emp_data">
 
                     </tbody>
                 </table>
