@@ -36,25 +36,26 @@ $(document).ready(function() {
 
     // ==================== INSERT ======================= //
     //insert data to database
-    $('#form_data').submit(function(e) {
+    $('#insert_form_data').submit(function(e) {
         e.preventDefault();
         $.ajax({
-            type: "Post",
-            url: "../Controllers/insert_empData.php",
             data: $('form').serialize(),
+            url: "../Controllers/insert_empData.php",
+            type: "Post",
             success: function(result) {
                 $.ajax({
                     type: "post",
-                    url: "url",
+                    url: "../APIs/api_1.php",
                     data: { 'request': '1', 'parameter': '1' },
                     dataType: "json",
-                    success: function(response) {
+                    success: function(result) {
                         $('#emp_data').html(result);
+                        $('#addModal').modal('hide');
                     }
                 });
             }
         });
-        $("#form_data")[0].reset();
+        $("#insert_form_data")[0].reset();
     });
 
 

@@ -46,7 +46,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" id="form_data">
+                    <form method="POST" id="insert_form_data">
                         <div class="modal-body mb-2">
                             <div class="row">
                                 <div class="col-md-12">
